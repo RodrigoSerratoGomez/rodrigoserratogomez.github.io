@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case study: 242s → 12s · Rodrigo Serrato Gomez</title>
+<meta name="description" content="How a core invoice-management endpoint used daily by 29 operations staff went from 242 seconds to 12: diagnosis, four steps and measured results.">
+<link rel="canonical" href="https://rodrigoserratogomez.github.io/case-study.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rodrigoserratogomez.github.io/case-study.html">
+<meta property="og:title" content="Case study: a core endpoint from 242s to 12s">
+<meta property="og:description" content="The endpoint 29 operations staff waited on every day — from four minutes to twelve seconds. Diagnosis, four steps and measured results.">
+<meta property="og:image" content="https://rodrigoserratogomez.github.io/assets/img/og-case.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script>(function(d){if(!matchMedia("(prefers-reduced-motion: reduce)").matches){d.classList.add("anim");setTimeout(function(){if(!window.gsap)d.classList.remove("anim")},3000)}})(document.documentElement)</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="nav">
+  <div class="progress" aria-hidden="true"></div>
+  <div class="wrap">
+    <a class="brand" href="index.html">RS<span>G</span></a>
+    <nav aria-label="Sections">
+      <a href="index.html#services" data-i18n="nav.services">Services</a>
+      <a href="index.html#work" data-i18n="nav.work">Work</a>
+      <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <button class="lang" type="button" data-lang-toggle aria-label="Ver en español">ES</button>
+  </div>
+</header>
+
+<main>
+<section class="cs-hero">
+  <div class="wrap">
+    <a href="index.html" class="label" data-i18n="cs.back">← Back to home</a>
+    <div class="eyebrow" style="margin-top:22px" data-i18n="cs.eyebrow">Case study · Core invoice-management endpoint · Factoring platform</div>
+    <div class="bignum" style="margin-top:16px"><s class="r strike">242</s><small class="r">s</small> <span style="color:var(--mute);font-size:.6em">→</span> <span class="c glow count" data-from="242">12</span><small class="c">s</small></div>
+    <p class="lead" style="margin-top:14px" data-i18n="cs.lead">The endpoint <strong>29 operations staff</strong> waited on every day — from four minutes to twelve seconds.</p>
+    <div class="bars" aria-hidden="true">
+      <div style="width:100%;background:var(--red)">242 s</div>
+      <div style="width:5%;min-width:64px;background:var(--cyan)">12 s</div>
+    </div>
+    <div class="pills"><span class="pill on" data-i18n="cs.pill">Taken on as a junior developer</span><span class="pill">C# · .NET</span><span class="pill">SQL Server · SSMS</span><span class="pill">React</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="cs.p.eyebrow">The problem</div>
+    <h2 style="margin-top:8px" data-i18n="cs.p.title">Four minutes. Every load. <span class="c">Every day.</span></h2>
+    <div class="grid g3" style="margin-top:28px">
+      <div class="card metric"><b class="c">29</b><p data-i18n="cs.p.s1">operations staff using it daily</p></div>
+      <div class="card metric"><b class="c">242s</b><p data-i18n="cs.p.s2">per load, at its worst</p></div>
+      <div class="card metric"><b class="c">#1</b><p data-i18n="cs.p.s3">the core of the factoring product</p></div>
+    </div>
+    <p class="lead" style="margin-top:26px" data-i18n="cs.p.p">It lived in the company's heaviest monolith, and the debt had been there for a long time. Product leadership made it a priority.</p>
+    <div class="quote" data-i18n="cs.p.q">In sprint planning I volunteered. I was a junior, but I had the most time on the product in a team of two juniors and one mid.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="cs.d.eyebrow">The diagnosis</div>
+    <h2 style="margin-top:8px" data-i18n="cs.d.title">I was looking in the <s class="r">wrong</s> <span class="c">place.</span></h2>
+    <div class="vs" style="margin-top:28px">
+      <div class="card bad"><div class="label r" style="color:var(--red)" data-i18n="cs.d.a">✕ What I assumed</div>
+        <ul data-i18n="cs.d.al"><li>logic inside controllers</li><li>repeated methods</li><li>hard-coded values</li><li>no clear responsibilities</li></ul>
+        <h3 class="r" style="margin-top:16px" data-i18n="cs.d.aq">"It's the backend code."</h3></div>
+      <div class="card hl"><div class="label c" style="color:var(--cyan)" data-i18n="cs.d.b">✓ What debugging showed</div>
+        <ul data-i18n="cs.d.bl"><li>the code was a mess, yes</li><li>but the weight was in the DB</li><li>stored procedures doing the heavy lifting</li><li>over the product's largest tables</li></ul>
+        <h3 class="c" style="margin-top:16px" data-i18n="cs.d.bq">"It's the data path."</h3></div>
+    </div>
+    <p class="lead" style="margin-top:26px" data-i18n="cs.d.p">My first pass went straight into the code — no logs, no look at the tables, no check of the frontend. A full debugging session corrected the diagnosis. Then I wrote a <strong>step-by-step restructuring plan</strong> and validated it with the interim tech lead before changing a line.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="cs.w.eyebrow">The work</div>
+    <h2 style="margin-top:8px" data-i18n="cs.w.title">Four steps, <span class="c">in this order.</span></h2>
+    <div style="margin-top:28px">
+      <div class="cs-step"><div class="n">01</div><div class="card"><h3 data-i18n="cs.w.1t">Clear the path to the database</h3><p data-i18n="cs.w.1p">Removed inefficient call loops, added validations to stop endless loads, and — with the acting product owner — cut deprecated business logic. About 40% of the backend.</p></div></div>
+      <div class="cs-step"><div class="n">02</div><div class="card hl"><h3 data-i18n="cs.w.2t">Fix the data layer</h3><p data-i18n="cs.w.2p">Rewrote the heaviest stored procedures, and wrote new ones where other modules still depended on the old. Added missing indexes; dropped unused ones only after checking every dependency.</p><div class="pills"><span class="pill on" data-i18n="cs.w.2x">≈ −65% latency on procedure calls</span></div></div></div>
+      <div class="cs-step"><div class="n">03</div><div class="card"><h3 data-i18n="cs.w.3t">Finish the backend</h3><p data-i18n="cs.w.3p">The remaining 60% of the restructure, each endpoint tested through Swagger.</p></div></div>
+      <div class="cs-step"><div class="n">04</div><div class="card"><h3 data-i18n="cs.w.4t">Redesign the frontend</h3><p data-i18n="cs.w.4p">With the UX/UI lead: pagination, new filters, clearer feedback. Business validations moved to the backend. Signed off by the CPO.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="cs.r.eyebrow">The result · measured, not felt</div>
+    <h2 style="margin-top:8px"><span class="c glow" style="font-size:1.6em">−95%</span> <span data-i18n="cs.r.title">load time</span></h2>
+    <div class="grid g4" style="margin-top:28px">
+      <div class="card metric"><div class="label" data-i18n="cs.r.1">Query cost</div><b><span class="r">~125K</span> → <span class="c">~2.3K</span></b><p>ms</p></div>
+      <div class="card metric"><div class="label" data-i18n="cs.r.2">Logical reads</div><b><span class="r">~4.5M</span> → <span class="c">~23K</span></b></div>
+      <div class="card metric"><div class="label" data-i18n="cs.r.3">Memory</div><b><span class="r">~2.1GB</span> → <span class="c">~420MB</span></b></div>
+      <div class="card metric"><div class="label" data-i18n="cs.r.4">Concurrent users, no degradation</div><b><span class="r">5</span> → <span class="c">30</span></b></div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <div class="label" data-i18n="cs.r.how">How it was measured</div>
+      <ul style="margin:12px 0 0;padding-left:18px;color:var(--soft)" data-i18n="cs.r.hl">
+        <li><strong>DB:</strong> SQL Server statistics and Query Store, before and after — run with the interim tech lead.</li>
+        <li><strong>UX:</strong> end-user stopwatch, Staging with the fix vs Production without it, side by side.</li>
+        <li><strong>Prod:</strong> final check in production, 242 s → 12 s.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="cs.l.eyebrow">What I learned</div>
+    <h2 style="margin-top:8px" data-i18n="cs.l.title">Estimated: <span class="c">2 weeks.</span> Real: ~5.</h2>
+    <p class="lead" style="margin-top:16px" data-i18n="cs.l.p">The two weeks were a guess, made before any analysis: about four weeks of build plus four to five days waiting for product sign-off.</p>
+    <div class="grid g2" style="margin-top:24px">
+      <div class="card"><div class="label" data-i18n="cs.l.dt">What I'd do differently</div><p style="margin-top:10px" data-i18n="cs.l.d">I left the frontend for last. Moving its business validations to the backend meant <strong>reopening a backend I had just finished</strong> — more code, more tests. Today I map the whole path, UI included, before changing the first line.</p></div>
+      <div class="card"><div class="label" data-i18n="cs.l.mt">My part · 90%</div><p style="margin-top:10px" data-i18n="cs.l.m"><strong>Analysis, plan, build and fix.</strong> The interim tech lead validated the plan and ran the DB measurements with me.</p></div>
+    </div>
+    <div class="card hl" style="margin-top:18px"><div class="label" data-i18n="cs.l.ot">The outcome</div><p style="margin-top:10px;font-size:18px" data-i18n="cs.l.o">The fix reached <strong>the CEO</strong>. Together with my habit of asking for the hardest tickets, it led to my <strong class="c">promotion to Mid-Level</strong> soon after.</p></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:30px">
+      <a class="btn solid" href="assets/case-study-242s-to-12s.pdf" target="_blank" rel="noopener" data-i18n="cs.pdf">Download the PDF</a>
+      <a class="btn" href="https://www.linkedin.com/in/rodrigo-rafael-serrato-gomez/" target="_blank" rel="noopener" data-i18n="cs.talk">Talk on LinkedIn</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="wrap"><span>© 2026 RODRIGO SERRATO GOMEZ</span><span data-i18n="ft">AREQUIPA, PERU · UTC-5</span></div></footer>
+<script src="assets/i18n.js"></script>
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
